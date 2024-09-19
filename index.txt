@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Student Worker Application">
+    <title>Student Worker Application</title>
+    <style>
+        body {
+            font-family: 'Stix Two Text', serif;
+            margin: 30px 14mm;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        .header h1 {
+            background-color: black;
+            color: white;
+            padding: 10px;
+        }
+        .contact-info {
+            width: 60%;
+        }
+        .content {
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+        .content p {
+            margin-bottom: 20px;
+        }
+        .signature {
+            margin-top: 40px;
+        }
+        .signature span {
+            background-color: black;
+            color: white;
+            padding: 2px 8px;
+        }
+        .links a {
+            color: #007acc;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Magnus Nedergaard</h1>
+        <div class="contact-info">
+            <p>Data Analyst | Student Assistant | Landfolk</p>
+        </div>
+    </div>
+
+    <div class="content">
+        <p><strong>Dear Hiring Team at Landfolk,</strong></p>
+
+        <p>
+            I’m excited to apply for the Data Analyst - Student Assistant position at Landfolk. I’m currently studying for my Master’s in Economics at Aarhus University and have developed a solid understanding of data analysis throughout my studies. I’m eager to use these skills in a real-world setting while contributing to your team.
+        </p>
+
+        <p>
+            I have experience working with tools such as R, Stata, and Excel. During my bachelor’s thesis, I used machine learning to analyze PISA data, and I’ve enjoyed working with large datasets to find meaningful insights. While I’m still learning Python, I’m confident in my ability to quickly adapt to new software and tools as needed.
+        </p>
+
+        <p>
+            My work as a Content Writer has also helped me develop clear communication skills, which I believe is important for sharing insights with the team and stakeholders. I enjoy working in teams and have a background that blends technical data analysis with practical communication skills.
+        </p>
+
+        <p>
+            I believe that working with data at Landfolk would be a great opportunity to continue learning while helping to support your goals. I’d love to discuss how my skills can fit into your team and make a positive impact.
+        </p>
+
+        <p>
+            Thank you for considering my application. I look forward to hearing from you!
+        </p>
+
+        <div class="signature">
+            <p>Kind regards,</p>
+            <span>Magnus Nedergaard</span>
+        </div>
+    </div>
+
+</body>
+</html>
