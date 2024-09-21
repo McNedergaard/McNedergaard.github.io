@@ -1,0 +1,78 @@
+
+# Clear enviroment
+{
+  rm(list = ls())
+}
+
+# Libaries
+{
+  library(sf)
+  library(ggplot2)
+  library(tmap)
+  library(dplyr)
+  library(haven)
+  library(readxl)
+}
+
+# Load data
+{
+  load("~/Documents/Politik og Økonomi/7 Semester/Political Geo Data Science Using R/uge4/ugeseddel/sogne_sf.RData")
+  population <- read_excel("~/Desktop/sognepopulation_d.xlsx")
+
+  
+  sogne <- sogne[order(sogne$sognekode), ]
+  
+  sogne$id <- 1:nrow(sogne)
+  
+  sogne_p <- merge(sogne, population, by = "id") # Merge
+  
+  sogne_p <- sogne_p |>
+    select(-sognenavn.y, -sognekode.y) |>
+    rename(sognenavn = sognenavn.x,
+           sognekode = sognekode.x)
+  
+  rm(population, sogne) # remove old data
+}
+
+# Tidying sogne
+{
+  sogne_p <- sogne_p |>
+    mutate(
+      inter_id = paste(sognenavn, sognekode, sep = ", "),
+      km2 = as.numeric(st_area(geometry)) / 1e6,
+    )
+    
+  sogne_p <- sogne_p |>
+    group_by(sognekode) |>
+    mutate(sogne_km = sum(km2)) |>
+    ungroup() |>
+    mutate(
+      indbyggere_km = Indbyggere / sogne_km
+    )
+  
+  
+  sogne_p <- sogne_p |>
+  mutate(
+    inbygger_tekst = paste("Der bor", Indbyggere, "i dette sogn"),
+    pr_km_tekst = paste("Det svarer til", round(indbyggere_km), "per kvadratkilometer")
+  )
+}
+
+tm_shape(sogne_p) +
+  # Improved polygons with custom color palette and transparency
+  tm_polygons(
+    "Indbyggere", 
+    style = "pretty", 
+    palette = "-RdYlGn",  # Reverse Red-Yellow-Green
+    title = "Indbyggere i sogne",
+    border.col = "black", # Add borders to polygons
+    border.alpha = 0.5,   # Slight transparency for borders
+    alpha = 0.7,          # Transparency for polygons
+    id = "inter_id",
+    popup.vars = c(
+      "Indbyggere" = "inbygger_tekst",
+      "Tæthed" = "pr_km_tekst"   
+    )
+  ) +
+  tmap_mode("view")
+
